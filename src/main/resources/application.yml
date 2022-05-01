@@ -1,0 +1,27 @@
+
+server:
+  port: 8080
+  servlet:
+    context-path: /spring-datajpa-cassandra
+
+# Spring Cassandra Database Configuration
+spring:
+  output:
+    ansi:
+      enabled: always
+  data:
+    cassandra:
+      local-datacenter: datacenter1
+      keyspace-name: emp_db_keyspace
+      port: 9042
+      username: cassandra
+      password: cassandra
+      schema-action: create_if_not_exists
+      contact-points:
+        - localhost:9042
+        - 127.0.0.1:9042
+
+application:
+  log-level: trace
+  log-file-dir: logs/
+
