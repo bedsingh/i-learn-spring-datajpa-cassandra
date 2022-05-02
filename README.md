@@ -102,5 +102,48 @@ spring:
         - 127.0.0.1:9042
 ```
 
+* Valid Employee Request sample:   
+```json
+{
+    "firstName": "Ved",
+    "lastName": "Singh",
+    "email": "ved.singh.007@hotmail.com",
+    "salary": 1230.98,
+    "phoneNumber":"444-999-1111"
+}
+```
+* Valid Employee Response sample:
+```json
+{
+  "employeeId": 138707557315760000,
+  "firstName": "Ved",
+  "lastName": "Singh",
+  "email": "ved.singh.007@hotmail.com",
+  "salary": 1230.98,
+  "phoneNumber": "444-999-1111"
+}
+```
 
+* Invalid Employee Request sample:
+```json
+{
+  "firstName": "VS",
+  "lastName": "Singh",
+  "email": "ved.singh.007@hotmail.com",
+  "salary": 1230.98,
+  "phoneNumber":"444-9991111"
+}
+```
 
+* Invalid Employee Response sample:
+```json
+{
+    "httpStatus": 400,
+    "message": "createEmployee.employeeRequest.firstName: First name must be > 2 and < 51 chars., createEmployee.employeeRequest.phoneNumber: must match \"\\d{3}-\\d{3}-\\d{4}\"",
+    "code": 10001,
+    "developerMessage": {
+        "createEmployee.employeeRequest.firstName": "First name must be > 2 and < 51 chars.",
+        "createEmployee.employeeRequest.phoneNumber": "must match \"\\d{3}-\\d{3}-\\d{4}\""
+    }
+}
+```
