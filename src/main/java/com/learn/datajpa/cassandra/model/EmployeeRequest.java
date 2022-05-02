@@ -8,10 +8,8 @@ import lombok.experimental.Accessors;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /****************************************************************************************************
@@ -25,6 +23,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement
 public class EmployeeRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +31,7 @@ public class EmployeeRequest implements Serializable {
     private Long employeeId;
 
     @NotBlank(message="First name is empty.")
-    @Size(min = 3, max = 50, message = "First name must be > 2 and < 51")
+    @Size(min = 3, max = 50, message = "First name must be > 2 and < 51 chars.")
     private String firstName;
 
     @NotNull(message="Last name is empty.")
@@ -44,6 +43,9 @@ public class EmployeeRequest implements Serializable {
     @NotNull(message="Salary is empty.")
     private Double salary;
 
+    @NotNull
+    @Pattern(regexp = "\\d{3}-\\d{3}-\\d{4}")
+    private String phoneNumber;
 
     @Override
     public String toString() {

@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "6ac0e2ac-0a33-45be-843e-906dfebfc74d",
+		"name": "i-learn-spring-data-cassandra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"BS\",\n    \"lastName\": \"Singh\",\n    \"email\": \"ved.singh@email.com\",\n    \"salary\": 1230.98,\n    \"phoneNumber\":\"444-999-3456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-datajpa-cassandra/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-datajpa-cassandra",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Error",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": null,\n    \"lastName\": \"Singh\",\n    \"email\": \"ved.singh@email.com\",\n    \"salary\": 1230.98,\n    \"phoneNumber\":\"444-999-3456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-datajpa-cassandra/employees/error",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-datajpa-cassandra",
+						"employees",
+						"error"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

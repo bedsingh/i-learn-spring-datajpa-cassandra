@@ -1,5 +1,7 @@
 package com.learn.datajpa.cassandra.config;
 
+import com.learn.datajpa.cassandra.exception.AppBadRequestException;
+import com.learn.datajpa.cassandra.exception.UncaughtException;
 import com.learn.datajpa.cassandra.resource.EmployeeResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,8 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig() {
         register(EmployeeResource.class);
+        register(AppBadRequestException.class);
+        register(UncaughtException.class);
     }
     
 }

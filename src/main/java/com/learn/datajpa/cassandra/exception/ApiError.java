@@ -1,18 +1,17 @@
-package com.learn.datajpa.cassandra.model;
+package com.learn.datajpa.cassandra.exception;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /****************************************************************************************************
- * User: Ved Singh
- * Date: 4/25/22 9:42 PM
+ * Date: 5/1/22 9:40 PM | Author: Singh, Ved |
  * To change this template user Preferences | Editor | File and Code Templates | Includes tab
  *
  *****************************************************************************************************/
@@ -22,15 +21,14 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("EMPLOYEE")
-public class EmployeeVO implements Serializable {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiError implements Serializable {
 
-    @PrimaryKey
-    private Long id;
+    private static final long serialVersionUID = 1L;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Double salary;
-    private String phoneNumber;
+    private Integer httpStatus;
+    private String message;
+    private Integer code;
+    private Map<String, String> developerMessage;
+
 }
