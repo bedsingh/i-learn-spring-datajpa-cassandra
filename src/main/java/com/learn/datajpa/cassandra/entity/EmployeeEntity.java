@@ -1,10 +1,11 @@
-package com.learn.datajpa.cassandra.model;
+package com.learn.datajpa.cassandra.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -23,14 +24,20 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table("EMPLOYEE")
-public class EmployeeVO implements Serializable {
+public class EmployeeEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @PrimaryKey
-    private Long id;
+    private EmployeeKey employeeKey;
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    @Column("SALARY")
     private Double salary;
+
+    @Column("AGE")
+    private Integer age;
+
+    @Column("PHONE_NUMBER")
     private String phoneNumber;
+
 }

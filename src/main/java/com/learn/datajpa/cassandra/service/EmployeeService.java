@@ -1,8 +1,8 @@
 package com.learn.datajpa.cassandra.service;
 
+import com.learn.datajpa.cassandra.entity.EmployeeEntity;
 import com.learn.datajpa.cassandra.mapper.EmployeeMapper;
 import com.learn.datajpa.cassandra.model.EmployeeRequest;
-import com.learn.datajpa.cassandra.model.EmployeeVO;
 import com.learn.datajpa.cassandra.repository.EmployeeRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,8 +34,8 @@ public class EmployeeService {
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE, timeout = -1, readOnly = true, rollbackFor = RuntimeException.class, noRollbackFor = DateTimeException.class)
     public EmployeeRequest insertEmployee(EmployeeRequest request) {
 
-        EmployeeVO employeeVO = EmployeeMapper.INSTANCE.map(request);
-        logger.info("Mapping EmployeeRequest -> EmployeeVO completed: ID: {}, FirstName: {}", employeeVO.getId(), employeeVO.getFirstName());
+        EmployeeEntity employeeVO = EmployeeMapper.INSTANCE.map(request);
+        logger.info("Mapping EmployeeRequest -> EmployeeVO completed: ID: {}, FirstName: {}", employeeVO.getEmployeeKey().getId(), employeeVO.getEmployeeKey().getFirstName());
 
         employeeRepository.deleteAll();
         employeeVO = employeeRepository.save(employeeVO);

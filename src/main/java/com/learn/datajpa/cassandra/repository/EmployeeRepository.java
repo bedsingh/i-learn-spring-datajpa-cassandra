@@ -1,6 +1,7 @@
 package com.learn.datajpa.cassandra.repository;
 
-import com.learn.datajpa.cassandra.model.EmployeeVO;
+import com.learn.datajpa.cassandra.entity.EmployeeEntity;
+import com.learn.datajpa.cassandra.entity.EmployeeKey;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,6 @@ import org.springframework.stereotype.Repository;
  *****************************************************************************************************/
 
 @Repository
-public interface EmployeeRepository extends CassandraRepository<EmployeeVO, Long> {
+public interface EmployeeRepository extends CassandraRepository<EmployeeEntity, EmployeeKey> {
 
 }
