@@ -3,7 +3,6 @@ package com.learn.datajpa.cassandra.mapper;
 import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.learn.datajpa.cassandra.entity.EmployeeEntity;
 import com.learn.datajpa.cassandra.model.EmployeeRequest;
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -23,19 +22,25 @@ public interface EmployeeMapper {
 
     EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
-    @Mapping(target = "employeeKey.id", source = "employeeId", qualifiedByName = "mapEmployeeID")
+    @Mapping(target = "employeeKey.id", source = "employeeRequest", qualifiedByName = "mapEmployeeId")
     @Mapping(target = "employeeKey.firstName", source = "firstName")
     @Mapping(target = "employeeKey.lastName", source = "lastName")
     @Mapping(target = "employeeKey.email", source = "email")
     EmployeeEntity map(EmployeeRequest employeeRequest);
 
-    @InheritInverseConfiguration
+    //@InheritInverseConfiguration
+    @Mapping(target = "employeeId", source = "employeeKey.id")
+    @Mapping(target = "firstName", source = "employeeKey.firstName")
+    @Mapping(target = "lastName", source = "employeeKey.lastName")
+    @Mapping(target = "email", source = "employeeKey.email")
     EmployeeRequest map(EmployeeEntity employeeVO);
 
 
-    @Named("mapEmployeeID")
-    default Long getEmployeeId(Long employeeId) {
-        return Optional.ofNullable(employeeId)
+    @Named("mapEmployeeId")
+    default Long getEmployeeId(EmployeeRequest employeeRequest) {
+        return Optional.of(employeeRequest.hashCode())
+                .map(Long::valueOf)
+                .map(Math::abs)
                 .orElse(Uuids.timeBased().timestamp());
     }
 

@@ -37,7 +37,7 @@ public class EmployeeService {
         EmployeeEntity employeeVO = EmployeeMapper.INSTANCE.map(request);
         logger.info("Mapping EmployeeRequest -> EmployeeVO completed: ID: {}, FirstName: {}", employeeVO.getEmployeeKey().getId(), employeeVO.getEmployeeKey().getFirstName());
 
-        employeeRepository.deleteAll();
+        //employeeRepository.deleteAll();
         employeeVO = employeeRepository.save(employeeVO);
         logger.info("{} Employee Added.", employeeRepository.count());
 
