@@ -36,7 +36,7 @@ public class SpringDataJpaCassandraApplication extends SpringBootServletInitiali
         logger.info("Total {} beans object created in spring container.", beans.length);
         Arrays.stream(beans).sorted()
                 .forEach(beanName -> {
-                    logger.debug("{}) Bean name: {}", counter.incrementAndGet(), beanName);
+                    logger.debug("{}) Bean: {}", counter.incrementAndGet(), beanName);
         });
     }
 

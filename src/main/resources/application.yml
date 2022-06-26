@@ -4,11 +4,15 @@ server:
   servlet:
     context-path: /spring-datajpa-cassandra
 
-# Spring Cassandra Database Configuration
 spring:
+  config:
+    import: classpath:/git-commit.properties
+
   output:
     ansi:
       enabled: always
+
+  # Spring Cassandra Database Configuration
   data:
     cassandra:
       local-datacenter: datacenter1
@@ -22,6 +26,6 @@ spring:
         - 127.0.0.1:9042
 
 application:
-  log-level: trace
+  log-level: info
   log-file-dir: logs/
 
